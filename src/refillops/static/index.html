@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#081419" />
+  <script>
+    // Apply the saved theme before paint; do not depend on API or login state.
+    try {
+      const saved = localStorage.getItem("refillops-theme");
+      document.documentElement.dataset.theme = ["dark", "light", "system"].includes(saved) ? saved : "dark";
+    } catch (_) { document.documentElement.dataset.theme = "dark"; }
+  </script>
+  <title>RefillOps | Fictional Operations Demo</title>
+  <link rel="stylesheet" href="/static/styles.css?v=0.1.5" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a href="/" class="brand"><span class="brand-symbol">R<span>•</span></span><span>Refill<span class="brand-accent">Ops</span><small>by JoPa Labs Studio</small></span></a>
+      <div class="sidebar-tag">LOCAL PORTFOLIO DEMO</div>
+      <nav id="nav" aria-label="Operations navigation"></nav>
+      <div class="sidebar-bottom"><div class="dot"></div><span>Fictional station data only</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><span class="breadcrumb">STATION OPERATIONS <span class="slash">/</span> <span id="active-page">OVERVIEW</span></span><div class="user-menu"><div class="theme-control"><label for="theme-select">Theme</label><select id="theme-select" aria-label="Appearance theme"><option value="dark">Dark</option><option value="light">Light</option><option value="system">System</option></select></div><span id="identity">Not signed in</span><button type="button" class="link-button" id="logout" hidden>Switch role</button></div></header>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <section id="content" class="content" aria-live="polite">
+        <div class="hero"><div><p class="eyebrow">A better view of the day</p><h1>Every refill.<br /><em>Accounted for.</em></h1><p class="hero-desc">A traceable order-to-billing demonstration for a neighborhood refilling station. Built for the owner who isn't always on-site.</p></div><div class="hero-mark" aria-hidden="true"><span>R</span></div></div>
+        <div class="panel auth"><h2>Open the local demo console</h2><p>Run the seed command, open <code>.local/demo_access.json</code>, and paste a generated actor key here. Keys are intentionally not embedded in the public code.</p>
+          <form id="login-form"><label for="token">Local bearer key</label><div class="form-row"><input name="token" type="password" id="token" placeholder="Paste generated demo key" required autocomplete="off"/><button type="submit" class="primary">Enter console</button></div></form>
+          <p class="muted small">Demo-only roles: Owner · Staff · Rider. This is not live payment software or a production authentication system.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="action-modal-root"></div>
+  <script src="/static/app.js?v=0.1.5" defer></script>
+</body>
+</html>
